@@ -17,9 +17,15 @@ class SplitArrayTests(unittest.TestCase):
         self.assertRaises(ValueError, splitArray,[0,1,2,3,4], 0)
 
     def testLargeSlice(self):
-        result = splitArray([0,1,2,3], 6)
-        self.assertEqual(len(result), 1)
-        self.assertEqual(result[0], [0,1,2,3])
+        self.assertRaises(ValueError, splitArray,[0,1,2,3,4], 8)
+
+    def testMinimalSLices(self):
+        result = splitArray([0,1,2,3], 4)
+        self.assertEqual(len(result), 4)
+        self.assertEqual(result[0], [0])
+        self.assertEqual(result[1], [1])
+        self.assertEqual(result[2], [2])
+        self.assertEqual(result[3], [3])
 
     def testDivisibleSlices(self):
         result = splitArray([0,1,2,3,4,5], 2)
