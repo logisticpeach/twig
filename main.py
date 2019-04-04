@@ -13,26 +13,28 @@ def splitArray(array, slices):
     if slices > arrayLength:
         raise ValueError
 
+    # Use workingLength when claculating the optimium
+    # bucket size
     workingLength = arrayLength
 
-    leftoverElements = arrayLength % slices
+    remainder = arrayLength % slices
 
-    if leftoverElements > 0:
-       workingLength = workingLength + leftoverElements
+    # Find the correct bucket size if things don't divide nicely 
+    if remainder > 0:
+       workingLength = workingLength + remainder
 
     bucketSize = workingLength // slices
 
     if bucketSize > arrayLength:
         return [array]
 
-    remainder = arrayLength % bucketSize
+    leftoverElements = arrayLength % bucketSize
 
     results = []
 
     for i in range (0, slices):
-
-        if i == slices-1 and remainder > 0:
-            results.append(array[arrayLength-remainder:])
+        if i == slices-1 and leftoverElements > 0:
+            results.append(array[arrayLength-leftoverElements:])
         else:
             start = i*bucketSize
             end = start + bucketSize
