@@ -13,7 +13,7 @@ def splitArray(array, slices):
     if slices > arrayLength:
         raise ValueError
 
-    # Use workingLength when claculating the optimium
+    # Use workingLength when calculating the optimium
     # bucket size
     workingLength = arrayLength
 
